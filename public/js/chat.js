@@ -62,10 +62,6 @@ $(function () {
             addMessage(data);
         }else if (data.type == 'new_user') {
             addMessage({type: 'new_user', 'message': 'New user joined to the conversation'});
-
-            if (data.count < 2){
-                addMessage({type: 'warning', 'message': 'There is no other users in this conversation. Your messages will be lost!'});
-            }
         }else if (data.type == 'wrong_key') {
             addMessage({
                 type: 'error',
