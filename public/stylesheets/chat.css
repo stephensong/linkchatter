@@ -1,13 +1,93 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font: 13px Helvetica, Arial; }
-form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
-form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
-form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
-#messages { list-style-type: none; margin: 0; padding: 0; }
-#messages li { padding: 5px 10px; }
-#messages li:nth-child(odd) { background: #eee; }
-#messages { margin-bottom: 40px }
+body{
+    background: #f5f5f5;
+}
 
-#messages li.new_user { background: #3fa4b3  }
-#messages li.warning { background: #b37836}
-#messages li.error { background: #b33528  }
+form {
+    border-top: solid #eeeeee 1px;
+    background: #efefef;
+    padding: 3px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+form input {
+    border-top: solid #ffffff 1px;
+    padding: 2px;
+    width: 90%;
+    margin-right: .5%;
+}
+
+form button {
+    width: 9%;
+    background: rgb(130, 224, 255);
+    border: none;
+    padding: 2px;
+}
+
+#messages {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#messages li {
+    padding: 5px 10px;
+    margin: 3px 2px;
+    border-radius: 1px;
+    font-size: 1.1em;
+    background: #ebeef3;
+    border-top: solid #fff 1px;
+    color: #333;
+}
+
+#messages li .user{
+    color: #4a6785;
+    font-size: 0.8em;
+    padding-left: 1em;
+}
+
+#messages li.me {
+    background: #dfefff;
+}
+
+#messages {
+    margin-bottom: 40px
+}
+
+#messages li.new_user {
+    background: #e3ede2
+}
+
+#messages li.warning {
+    background: #e9e5ed
+}
+
+#messages li.error {
+    background: #b33528
+}
+
+.chat{
+    padding: 0;
+}
+
+.icon{
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    border: 1px solid #4b4b4b;
+    margin: 3px;
+    float: left;
+}
+.icon i{
+    color: white;
+    font-size: 22px;
+    position: relative;
+    left: 6px;
+    top: 2px;
+}
+.message{
+    min-height: 40px;
+    padding-left: 3px;
+    padding-top: 5px;
+}

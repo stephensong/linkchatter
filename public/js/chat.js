@@ -1,5 +1,7 @@
 $(function () {
 
+    var colorHash = new ColorHash();
+
     var roomIdRegex = /^\/chat\/([a-zA-Z0-9]+):([a-zA-Z0-9]+)/;
 
     var roomMath = window.location.pathname.match(roomIdRegex);
@@ -8,6 +10,8 @@ $(function () {
     var key = roomMath[2];
 
     var socket = io();
+
+    var myID = undefined;
 
     // let's assume that the client page, once rendered, knows what room it wants to join
     var roomID = room+":"+key;
@@ -21,7 +25,22 @@ $(function () {
     });
 
     function addMessage(data) {
-        $('#messages').append($('<li class="'+data.type+'">').text(data.message));
+        var $messsage = $('<li class="'+data.type+'">');
+
+        if (data.user_id == myID) {
+            $messsage.addClass('me');
+        }
+
+        $messsage.append($('<div class="user">').text(data.user_id));
+        if (data.user_id != undefined) {
+            var icon = $('<div class="icon">').append('<i class="fa fa-user">');
+            icon.css('background', colorHash.hex(data.user_id));
+            $messsage.append(icon);
+        }
+        var message = $('<div class="message">').text(data.message);
+        $messsage.append(message);
+
+            $('#messages').append($messsage);
         window.scrollTo(0, document.body.scrollHeight);
     }
 
@@ -39,8 +58,15 @@ $(function () {
                 type:'error',
                 message:'Your key is invalid!'
             });
+        else if (data.type == 'hello')
+            setUp(data);
 
     });
+
+    function setUp(data) {
+        myID = data.id;
+        console.log(data);
+    }
 
     $('form').submit(function(){
         socket.emit('message', {

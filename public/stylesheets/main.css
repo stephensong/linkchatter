@@ -25,3 +25,24 @@
     .jumbotron .lang-logo img {
       max-width: 100%; }
 
+.info{
+  font-size: 1.3em;
+}
+
+.info li{
+  margin: 3px 1px;
+
+}
+
+.navbar{
+  min-height: 35px;
+  background: #576ab0;
+  border-color: #bfbfbf;
+  margin-bottom: 1px;
+}
+
+.navbar li a{
+  height: 35px;
+  padding: 8px;
+  background: #a4b3df !important;
+}

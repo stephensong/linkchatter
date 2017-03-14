@@ -4,7 +4,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var port = process.env.PORT || 3000;
 var sha256 = require('js-sha256').sha224;
-var cool = require('cool-ascii-faces');
+
 
 var pg = require('pg');
 
@@ -34,7 +34,6 @@ app.get('/get-link', function(req, res){
 
     var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 
-    console.log(ip);
     var ipNumber = ip.replace(/[^0-9]/g, '');
     ipNumber = parseInt(ipNumber);
 
@@ -56,7 +55,6 @@ app.get(/^\/chat\/([a-zA-Z0-9]+):([a-zA-Z0-9]+)$/, function(request, response){
 
 
 function sendToMyRooms(socket, data) {
-    console.log(data, socket.rooms);
     for (var room in socket.rooms) {
         if (room == socket.id) continue;
 
@@ -69,7 +67,9 @@ function sendToMe(socket, data) {
 }
 
 io.sockets.on('connection', function(socket) {
-    // once a client has connected, we expect to get a ping from them saying what room they want to join
+
+    sendToMe(socket,{type:'hello',id:socket.id});
+
     socket.on('join_to_room', function(data) {
 
         try{
@@ -93,6 +93,7 @@ io.sockets.on('connection', function(socket) {
     });
 
     socket.on('message', function(data) {
+        data.user_id = socket.id;
         sendToMyRooms(socket, data);
 
     });

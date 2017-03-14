@@ -1,0 +1,26 @@
+{
+  "name": "node-socket",
+  "description": "A sample Node.js app using Express 4",
+  "main": "index.js",
+  "authors": [
+    "karboosx <karbo243@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "color-hash": "^1.0.3"
+  }
+}
