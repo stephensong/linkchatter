@@ -10,6 +10,7 @@ var pg = require('pg');
 
 app.set('port', (process.env.PORT || 3000));
 var keySalt = process.env.APP_KEY || 'testowy';
+var registerHistory = process.env.REGISTER_HISTORY || 'false';
 app.use(express.static(__dirname + '/public'));
 
 // views is directory for all template files
@@ -62,8 +63,25 @@ function sendToMyRooms(socket, data) {
     }
 }
 
+function getRoomID(socket) {
+    for (var room in socket.rooms) {
+        if (room == socket.id) continue;
+
+        return room;
+    }
+}
+
 function sendToMe(socket, data) {
     io.sockets.in(socket.id).emit('message', data);
+}
+
+function insetToHistory(socket, data) {
+    if (!registerHistory) return;
+
+    pool.query('INSERT INTO films (user_id, room, text, timestamp) VALUES ($1,$2,$3,$4);', [socket.id, getRoomID(socket), data.message, (+new Date())], function(err, result) {
+        if (err)
+        { console.error(err); response.send("Error " + err); }
+    });
 }
 
 io.sockets.on('connection', function(socket) {
@@ -95,6 +113,8 @@ io.sockets.on('connection', function(socket) {
     socket.on('message', function(data) {
         data.user_id = socket.id;
         sendToMyRooms(socket, data);
+
+        insetToHistory(socket, data);
 
     });
 });
