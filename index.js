@@ -1,7 +1,6 @@
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
-var Hashids = require('hashids');
 var io = require('socket.io')(http);
 var port = process.env.PORT || 3000;
 var sha256 = require('js-sha256').sha224;
@@ -10,7 +9,7 @@ var cool = require('cool-ascii-faces');
 var pg = require('pg');
 
 app.set('port', (process.env.PORT || 3000));
-
+var keySalt = process.env.APP_KEY || 'testowy';
 app.use(express.static(__dirname + '/public'));
 
 // views is directory for all template files
@@ -24,11 +23,6 @@ var client= undefined;
 pool.connect(function(err, _client, done) {
     client = _client;
 });
-
-var hashidsSalt = 'testowy';
-var keySalt = 'testowy';
-
-var hashids = new Hashids(hashidsSalt, 10, '1234567890qwertyuiopasdfghjklzxcvbnm');
 
 
 app.get('/', function(request, response) {
@@ -44,13 +38,14 @@ app.get('/get-link', function(req, res){
     var ipNumber = ip.replace(/[^0-9]/g, '');
     ipNumber = parseInt(ipNumber);
 
-    var roomID =parseInt('0'+(+ new Date())+ipNumber);
+    var roomID ='0'+(+ new Date())+ipNumber;
 
-    var roomHash = hashids.encode(roomID);
+    var b = new Buffer(roomID);
 
-    console.log(ipNumber, roomID, roomHash);
+    var roomHash = b.toString('base64').replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+
     res.send({
-        conversation_id:roomHash+':'+sha256(roomID+''+keySalt)
+        conversation_id:roomHash+':'+sha256(roomHash+''+keySalt)
     });
 
 });
@@ -78,7 +73,7 @@ io.sockets.on('connection', function(socket) {
     socket.on('join_to_room', function(data) {
 
         try{
-            var roomID = hashids.decode(data.room);
+            var roomID = (data.room);
             var key = sha256(roomID+''+keySalt);
             var roomName = 'conversation-'+roomID;
 
