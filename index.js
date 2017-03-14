@@ -36,10 +36,11 @@ app.get('/', function(request, response) {
 });
 
 
-app.get('/getLink', function(req, res){
+app.get('/get-link', function(req, res){
 
     var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 
+    console.log(ip);
     var ipNumber = ip.replace(/[^0-9]/g, '');
     ipNumber = parseInt(ipNumber);
 
