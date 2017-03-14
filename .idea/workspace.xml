@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="3d789f9e-6e44-4bc3-b608-0dd5d7939dd2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/partials/header.ejs" afterPath="$PROJECT_DIR$/views/partials/header.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/chat.css" afterPath="$PROJECT_DIR$/public/stylesheets/chat.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/main.css" afterPath="$PROJECT_DIR$/public/stylesheets/main.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/partials/nav.ejs" afterPath="$PROJECT_DIR$/views/partials/nav.ejs" />
     </list>
     <ignored path="node-js-getting-started.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,8 +37,8 @@
       <file leaf-file-name="chat.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/stylesheets/chat.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
-              <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="21" />
+            <state relative-caret-position="145">
+              <caret line="69" column="6" selection-start-line="69" selection-start-column="6" selection-end-line="69" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -52,11 +54,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/stylesheets/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="864">
-              <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+            <state relative-caret-position="325">
+              <caret line="49" column="19" selection-start-line="49" selection-start-column="19" selection-end-line="49" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -72,7 +74,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="header.ejs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="header.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/partials/header.ejs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
@@ -85,8 +87,8 @@
       <file leaf-file-name="nav.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/partials/nav.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="1" column="29" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="29" />
+            <state relative-caret-position="54">
+              <caret line="3" column="9" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -128,11 +130,11 @@
         <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/views/pages/chat.ejs" />
         <option value="$PROJECT_DIR$/public/js/chat.js" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/views/partials/header.ejs" />
         <option value="$PROJECT_DIR$/public/stylesheets/chat.css" />
         <option value="$PROJECT_DIR$/views/partials/nav.ejs" />
         <option value="$PROJECT_DIR$/public/stylesheets/main.css" />
-        <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/views/partials/header.ejs" />
       </list>
     </option>
   </component>
@@ -369,7 +371,7 @@
       <updated>1489493779523</updated>
       <workItem from="1489502135455" duration="22000" />
       <workItem from="1489502167536" duration="4095000" />
-      <workItem from="1489516896936" duration="9614000" />
+      <workItem from="1489516896936" duration="10944000" />
     </task>
     <task id="LOCAL-00001" summary="db work">
       <created>1489505440045</created>
@@ -427,11 +429,18 @@
       <option name="project" value="LOCAL" />
       <updated>1489526374474</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="meta">
+      <created>1489526516468</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1489526516468</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13731000" />
+    <option name="totallyTimeSpent" value="15061000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="43" y="24" width="1397" height="876" extended-state="6" />
@@ -507,7 +516,8 @@
     <MESSAGE value="test" />
     <MESSAGE value="css" />
     <MESSAGE value="delete bower" />
-    <option name="LAST_COMMIT_MESSAGE" value="delete bower" />
+    <MESSAGE value="meta" />
+    <option name="LAST_COMMIT_MESSAGE" value="meta" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -744,30 +754,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/partials/nav.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="29" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/pages/chat.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/stylesheets/chat.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bower.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
@@ -784,10 +770,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/stylesheets/main.css">
+    <entry file="file://$PROJECT_DIR$/views/pages/chat.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="864">
-          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+        <state relative-caret-position="108">
+          <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/stylesheets/chat.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="69" column="6" selection-start-line="69" selection-start-column="6" selection-end-line="69" selection-end-column="6" />
           <folding />
         </state>
       </provider>
@@ -796,6 +790,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="5" column="70" selection-start-line="5" selection-start-column="70" selection-end-line="5" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/partials/nav.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="9" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/stylesheets/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="49" column="19" selection-start-line="49" selection-start-column="19" selection-end-line="49" selection-end-column="19" />
           <folding />
         </state>
       </provider>

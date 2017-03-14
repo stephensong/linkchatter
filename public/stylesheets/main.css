@@ -44,5 +44,9 @@
 .navbar li a{
   height: 35px;
   padding: 8px;
-  background: #a4b3df !important;
+  background: #546494 !important;
+  color: white!important;
+}
+.navbar li a:hover{
+  background: #697aac !important;
 }
