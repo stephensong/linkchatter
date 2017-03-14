@@ -78,7 +78,7 @@ function sendToMe(socket, data) {
 function insetToHistory(socket, data) {
     if (!registerHistory) return;
 
-    pool.query('INSERT INTO films (user_id, room, text, timestamp) VALUES ($1,$2,$3,$4);', [socket.id, getRoomID(socket), data.message, (+new Date())], function(err, result) {
+    pool.query('INSERT INTO history (user_id, room, text, timestamp) VALUES ($1,$2,$3,$4);', [socket.id, getRoomID(socket), data.message, (+new Date())], function(err, result) {
         if (err)
         { console.error(err); response.send("Error " + err); }
     });
