@@ -1,6 +1,7 @@
 var cool = require('cool-ascii-faces');
 var express = require('express');
 var app = express();
+var pg = require('pg');
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -16,6 +17,30 @@ app.get('/', function(request, response) {
 
 app.get('/cool', function(request, response) {
     response.send(cool());
+});
+
+
+
+
+//this initializes a connection pool
+//it will keep idle connections open for a 30 seconds
+//and set a limit of maximum 10 idle clients
+var pool = new pg.Client(process.env.DATABASE_URL);
+var client= undefined;
+
+pool.connect(function(err, _client, done) {
+    client = _client;
+});
+
+app.get('/db', function (request, response) {
+
+    pool.query('SELECT * FROM test_table', function(err, result) {
+        if (err)
+        { console.error(err); response.send("Error " + err); }
+        else
+        { response.render('pages/db', {results: result.rows} ); }
+    });
+
 });
 
 app.listen(app.get('port'), function() {
