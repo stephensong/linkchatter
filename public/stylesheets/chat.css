@@ -69,7 +69,12 @@ form button {
 
 .chat{
     padding: 0;
-    margin-top: 30px;
+    margin-top: 40px;
+}
+@media (max-width: 600px) {
+    .chat {
+        margin-top: 55px;
+    }
 }
 
 .icon{
