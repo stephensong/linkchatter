@@ -44,22 +44,38 @@ $(function () {
         window.scrollTo(0, document.body.scrollHeight);
     }
 
+    function makeHistory(rows) {
+        for (var i = 0; i < rows.length; i++) {
+            var row = rows[i];
+
+            row.message = row.text;
+
+            addMessage(row);
+        }
+    }
+
     socket.on('message', function(data) {
-        if (data.type == 'message')
+
+        console.log(data);
+
+        if (data.type == 'message') {
             addMessage(data);
-        else if (data.type == 'new_user') {
+        }else if (data.type == 'new_user') {
             addMessage({type: 'new_user', 'message': 'New user joined to the conversation'});
 
             if (data.count < 2){
                 addMessage({type: 'warning', 'message': 'There is no other users in this conversation. Your messages will be lost!'});
             }
-        }else if (data.type == 'wrong_key')
+        }else if (data.type == 'wrong_key') {
             addMessage({
-                type:'error',
-                message:'Your key is invalid!'
+                type: 'error',
+                message: 'Your key is invalid!'
             });
-        else if (data.type == 'hello')
+        }else if (data.type == 'hello') {
             setUp(data);
+        }else if (data.type == 'history') {
+            makeHistory(data.data);
+        }
 
     });
 

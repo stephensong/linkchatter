@@ -49,6 +49,8 @@ app.get('/get-link', function(req, res){
     });
 
 });
+
+
 app.get(/^\/chat\/([a-zA-Z0-9]+):([a-zA-Z0-9]+)$/, function(request, response){
 
     response.render('pages/chat')
@@ -84,6 +86,21 @@ function insetToHistory(socket, data) {
     });
 }
 
+function sendHistory(socket) {
+    if (!registerHistory) return;
+
+    pool.query('SELECT * FROM history WHERE room LIKE $1 ORDER BY timestamp LIMIT 10;', [getRoomID(socket)], function(err, result) {
+        if (err) {
+            console.error(err); console.log("Error " + err);
+        } else {
+            sendToMe(socket, {
+                type:'history',
+                data:result.rows
+            });
+        }
+    });
+}
+
 io.sockets.on('connection', function(socket) {
 
     sendToMe(socket,{type:'hello',id:socket.id});
@@ -102,6 +119,7 @@ io.sockets.on('connection', function(socket) {
                         count:io.sockets.adapter.rooms[roomName].length
                     });
 
+                    sendHistory(socket);
                 });
 
             }else{
@@ -120,17 +138,6 @@ io.sockets.on('connection', function(socket) {
 });
 
 
-
-app.get('/db', function (request, response) {
-
-    pool.query('SELECT * FROM test_table', function(err, result) {
-        if (err)
-        { console.error(err); response.send("Error " + err); }
-        else
-        { response.render('pages/db', {results: result.rows} ); }
-    });
-
-});
 
 
 http.listen(port, function(){
