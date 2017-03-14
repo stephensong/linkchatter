@@ -48,6 +48,7 @@ app.get('/get-link', function(req, res){
 
     var roomHash = hashids.encode(roomID);
 
+    console.log(ipNumber, roomID, roomHash);
     res.send({
         conversation_id:roomHash+':'+sha256(roomID+''+keySalt)
     });
