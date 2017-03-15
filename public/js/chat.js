@@ -99,4 +99,6 @@ $(function () {
         $val.val('');
         return false;
     });
+
+    $val.focus();
 });

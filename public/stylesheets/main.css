@@ -50,3 +50,19 @@
 .navbar li a:hover{
   background: #697aac !important;
 }
+
+
+.footer{
+  color: #2f2f2f;
+  padding: 7px 18px;
+  padding-top: 20px;
+  font-size: 16px;
+  background: #e2e4e4;
+  border-top: 1px solid #bbbbbb;
+  min-height: 100px;
+  margin-top: 27px;
+}
+
+body{
+  margin: 0;
+}
