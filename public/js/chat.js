@@ -45,6 +45,7 @@ $(function () {
     }
 
     function makeHistory(rows) {
+        $('#messages').html('');
         for (var i = 0; i < rows.length; i++) {
             var row = rows[i];
 
@@ -60,7 +61,7 @@ $(function () {
 
         if (data.type == 'message') {
             addMessage(data);
-        }else if (data.type == 'new_user') {
+        }else if (data.type == 'new_user' && data.user_id != myID) {
             addMessage({type: 'new_user', 'message': 'New user joined to the conversation'});
         }else if (data.type == 'wrong_key') {
             addMessage({
@@ -74,18 +75,28 @@ $(function () {
         }
 
     });
+    var $val = $('#m');
+
+    function enableChatting() {
+        $val.prop('disabled', false);
+        $('#m_send').prop('disabled', false);
+    }
 
     function setUp(data) {
         myID = data.id;
-        console.log(data);
+        enableChatting();
     }
 
+
     $('form').submit(function(){
+
+        if ($val.val() == '') return;
+
         socket.emit('message', {
             type:'message',
-            message:$('#m').val()
+            message:$val.val()
         });
-        $('#m').val('');
+        $val.val('');
         return false;
     });
 });
