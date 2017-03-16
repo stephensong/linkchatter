@@ -41,12 +41,6 @@ form button {
     color: #333;
 }
 
-#messages li .user{
-    color: #4a6785;
-    font-size: 0.8em;
-    padding-left: 1em;
-}
-
 #messages li.me {
     background: #dfefff;
 }
@@ -96,4 +90,19 @@ form button {
     min-height: 40px;
     padding-left: 3px;
     padding-top: 5px;
+}
+
+#messages li .info .user{
+    color: #4a6785;
+    font-size: 0.6em;
+    padding-left: 0.5em;
+    display: inline-block;
+}
+
+
+#messages li .info .time{
+    color: #6c6f80;
+    font-size: 0.5em;
+    padding-left: 0.9em;
+    display: inline-block;
 }

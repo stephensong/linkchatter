@@ -130,6 +130,7 @@ io.sockets.on('connection', function(socket) {
 
     socket.on('message', function(data) {
         data.user_id = socket.id;
+        data.timestamp = (+new Date());
         sendToMyRooms(socket, data);
 
         insetToHistory(socket, data);

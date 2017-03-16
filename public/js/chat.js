@@ -1,3 +1,4 @@
+
 $(function () {
 
     var colorHash = new ColorHash();
@@ -23,6 +24,16 @@ $(function () {
             key:key
         });
     });
+    function formatText(timestamp) {
+        var time = moment.unix(timestamp/1000);
+        var timestampNow = new Date().getDate() / 1000;
+
+        if (timestamp<timestampNow-60*60*24){
+            return time.format('DD-MM-YY HH:mm');
+        }else{
+            return time.format('HH:mm');
+        }
+    }
 
     function addMessage(data) {
         var $messsage = $('<li class="'+data.type+'">');
@@ -31,7 +42,14 @@ $(function () {
             $messsage.addClass('me');
         }
 
-        $messsage.append($('<div class="user">').text(data.user_id));
+
+        var $info = $('<div class="info">');
+        $info.append($('<div class="user">').text(data.user_id));
+        $info.append($('<div class="time">').text(
+            formatText(data.timestamp)
+        ));
+        $messsage.append($info);
+
         if (data.user_id != undefined) {
             var icon = $('<div class="icon">').append('<i class="fa fa-user">');
             icon.css('background', colorHash.hex(data.user_id));
@@ -40,7 +58,7 @@ $(function () {
         var message = $('<div class="message">').text(data.message);
         $messsage.append(message);
 
-            $('#messages').append($messsage);
+        $('#messages').append($messsage);
         window.scrollTo(0, document.body.scrollHeight);
     }
 
@@ -61,7 +79,7 @@ $(function () {
 
         if (data.type == 'message') {
             addMessage(data);
-        }else if (data.type == 'new_user' && data.user_id != myID) {
+        }else if (data.type == 'new_user' && myID != undefined && data.user_id != myID) {
             addMessage({type: 'new_user', 'message': 'New user joined to the conversation'});
         }else if (data.type == 'wrong_key') {
             addMessage({
