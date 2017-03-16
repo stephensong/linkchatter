@@ -51,7 +51,7 @@ app.get('/', function(request, response) {
     response.render('pages/index',{page: request.url})
 });
 
-app.get(/^\/chat\/([a-zA-Z0-9]+):([a-zA-Z0-9]+)$/, function(request, response){
+app.get(/^\/chat\/.+$/, function(request, response){
 
     response.render('pages/chat',{page: request.url})
 });
@@ -85,7 +85,7 @@ function sendToMe(socket, data) {
 function insetToHistory(socket, data) {
     if (!registerHistory) return;
 
-    pool.query('INSERT INTO history (user_id, room, text, timestamp) VALUES ($1,$2,$3,$4);', [socket.id, getRoomID(socket), data.message, (+new Date())], function(err, result) {
+    pool.query('INSERT INTO history (user_id, nickname, room, text, timestamp) VALUES ($1,$2,$3,$4,$5);', [socket.id,data.nickname || '', getRoomID(socket), data.message, (+new Date())], function(err, result) {
         if (err)
         { console.error(err); response.send("Error " + err); }
     });

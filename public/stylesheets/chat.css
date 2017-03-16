@@ -106,3 +106,21 @@ form button {
     padding-left: 0.9em;
     display: inline-block;
 }
+
+.input-screen{
+    display: flex;
+    position: fixed;
+    top:0;
+    width: 100vw;
+    height: 100vh;
+    background: #111111;
+    z-index: 2000;
+    align-items:center;
+    justify-content: center;
+    text-align: center;
+}
+
+.input-screen .input{
+    margin: 20px;
+    display: none;
+}

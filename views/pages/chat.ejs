@@ -12,8 +12,8 @@
 
 <body>
 
-  <% include ../partials/nav.ejs %>
 
+  <% include ../partials/nav.ejs %>
 <div class="container-fluid chat">
   <ul id="messages"></ul>
   <form action="">
@@ -29,6 +29,27 @@
   <script src="/js/chat.js"></script>
 </div>
 
+  <form id="input_screen" class="input-screen" style="display: none;" action="">
+    <div>
+      <div class="input" id="input_key_field">
+        <div>
+          <label for="input_key">Authorization Key</label>
+        </div>
+        <input type="text" id="input_key" name="input_key" class="form-control" placeholder="Authorization Key">
+      </div>
+
+      <div class="input" id="input_nickname_field">
+        <div>
+          <label for="input_nickname">Nickname</label>
+        </div>
+        <input type="text" id="input_nickname" name="input_nickname" class="form-control" placeholder="Nickname">
+      </div>
+
+      <input type="submit" class="btn btn-success" id="submit_input_screen" value="Confirm">
+    </div>
+
+
+  </form>
 
 </body>
 </html>
