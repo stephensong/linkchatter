@@ -33,7 +33,19 @@
   margin: 3px 1px;
 
 }
+.navbar-header{
+  /*height: 35px;*/
+}
+.navbar-toggle.collapsed{
+  border: 1px solid #7b9bc5!important;
+}
+.navbar-toggle{
+  padding: 6px;
+}
 
+.navbar-toggle.collapsed .icon-bar{
+  background-color: #7b9bc5!important;
+}
 .navbar{
   min-height: 35px;
   background: #576ab0;

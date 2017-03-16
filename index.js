@@ -121,6 +121,7 @@ io.sockets.on('connection', function(socket) {
                 socket.join(roomName, function () {
                     sendToMyRooms(socket, {
                         type:'new_user',
+                        user_id:socket.id,
                         count:io.sockets.adapter.rooms[roomName].length
                     });
 
@@ -128,7 +129,6 @@ io.sockets.on('connection', function(socket) {
 
 
                     socket.on('disconnect', function() {
-                        console.log('leave',roomName);
 
                         io.sockets.in(roomName).emit('message',{
                             type:'disconnect',
