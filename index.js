@@ -4,7 +4,10 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var port = process.env.PORT || 3000;
 var sha256 = require('js-sha256').sha224;
+var favicon = require('serve-favicon');
+var path = require('path');
 
+app.use(favicon(path.join(__dirname,'public','favicon.ico')));
 
 var pg = require('pg');
 

@@ -16,6 +16,7 @@
     "js-sha256": "^0.5.0",
     "node-rsa": "^0.4.2",
     "pg": "^6.1.4",
+    "serve-favicon": "^2.4.1",
     "socket.io": "^1.7.3"
   },
   "repository": {
