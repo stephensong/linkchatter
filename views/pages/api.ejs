@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/header.ejs %>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/chat.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+  <script src="/js/color-hash.js"></script>
+  <script src="https://use.fontawesome.com/59d329f20f.js"></script>
+
+
+</head>
+
+<body>
+
+  <% include ../partials/nav.ejs %>
+
+<div class="container" style="margin-top: 2em">
+  <header>
+    <h1>API Documentation</h1>
+  </header>
+  <p>For this moment, our API provide only one endpoint.</p>
+
+  <h3>Creating new conversation</h3>
+  <p>HTTP GET Endpoint</p>
+  <pre>https://linkchatter.com/get-link</pre>
+
+  <p>Example response</p>
+  <pre>
+{
+  "conversation_id": "mde0odk2nzm2mtm5ndixmjcwmde:d83b2f1422c14016176c75d9c359531f0d7a03b43a560cc2497b55c"
+}</pre>
+
+  <p>Link to conversation can be build by following formula</p>
+  <pre>https://linkchatter.com/chat/{conversation_id}</pre>
+  <p>So that the URL will look like this</p>
+  <pre>https://linkchatter.com/chat/mde0odk2nzm2mtm5ndixmjcwmde:d83b2f1422c14016176c75d9c359531f0d7a03b43a560cc2497b55c</pre>
+</div>
+
+
+</body>
+</html>

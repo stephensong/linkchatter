@@ -1,8 +1,11 @@
 <nav class="navbar navbar-default navbar-static-top navbar-fixed-top">
   <div class="container-fluid">
     <ul class="nav navbar-nav">
-      <li>
+      <li <% if ('/' == page) { %> class="active" <% }%>>
         <a href="/"><span class="glyphicon glyphicon-home"></span> Home</a>
+      </li>
+      <li  <% if ('/api' == page) { %> class="active" <% }%>>
+        <a href="/api">API</a>
       </li>
     </ul>
   </div>

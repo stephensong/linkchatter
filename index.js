@@ -26,9 +26,6 @@ pool.connect(function(err, _client, done) {
 });
 
 
-app.get('/', function(request, response) {
-    response.render('pages/index')
-});
 
 
 app.get('/get-link', function(req, res){
@@ -50,10 +47,18 @@ app.get('/get-link', function(req, res){
 
 });
 
+app.get('/', function(request, response) {
+    response.render('pages/index',{page: request.url})
+});
 
 app.get(/^\/chat\/([a-zA-Z0-9]+):([a-zA-Z0-9]+)$/, function(request, response){
 
-    response.render('pages/chat')
+    response.render('pages/chat',{page: request.url})
+});
+
+app.get(/api/, function(request, response){
+
+    response.render('pages/api',{page: request.url})
 });
 
 

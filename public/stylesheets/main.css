@@ -44,21 +44,24 @@
 .navbar li a{
   height: 35px;
   padding: 8px;
-  background: #546494 !important;
+  background: #6075b9 !important;
   color: white!important;
 }
 .navbar li a:hover{
-  background: #697aac !important;
+  background: #5e6c9b !important;
+}
+.navbar li.active a{
+  background: #475377 !important;
 }
 
 
 .footer{
-  color: #2f2f2f;
+  color: #f5f5f5;
   padding: 7px 18px;
   padding-top: 20px;
   font-size: 16px;
-  background: #e2e4e4;
-  border-top: 1px solid #bbbbbb;
+  background: #383838;
+  border-top: 3px solid #3390dc;
   min-height: 100px;
   margin-top: 27px;
 }
