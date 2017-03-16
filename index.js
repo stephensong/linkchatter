@@ -42,7 +42,8 @@ app.get('/get-link', function(req, res){
     var roomHash = b.toString('base64').replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
 
     res.send({
-        conversation_id:roomHash+':'+sha256(roomHash+''+keySalt)
+        conversation_id:roomHash,
+        key:sha256(roomHash+''+keySalt)
     });
 
 });

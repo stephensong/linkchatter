@@ -4,8 +4,8 @@ $(function () {
 
     $.get('/get-link').done(function (data) {
 
-        linkInput.val(window.location.href+'chat/'+data.conversation_id);
-        go_to_link.prop('href',window.location.href+'chat/'+data.conversation_id);
+        linkInput.val(window.location.href+'chat/'+data.conversation_id+':'+data.key);
+        go_to_link.prop('href',window.location.href+'chat/'+data.conversation_id+':'+data.key);
         linkInput.prop('disabled', false);
     });
 

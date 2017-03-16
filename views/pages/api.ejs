@@ -27,13 +27,31 @@
   <p>Example response</p>
   <pre>
 {
-  "conversation_id": "mde0odk2nzm2mtm5ndixmjcwmde:d83b2f1422c14016176c75d9c359531f0d7a03b43a560cc2497b55c"
+  "conversation_id": "mde0odk2odm3odk0mjexmjcwm",
+  "key": "1814c55ade47aa623aa83a8b5681bf58597a8cfec37f6919b8db6f"
 }</pre>
 
   <p>Link to conversation can be build by following formula</p>
   <pre>https://linkchatter.com/chat/{conversation_id}</pre>
+
   <p>So that the URL will look like this</p>
-  <pre>https://linkchatter.com/chat/mde0odk2nzm2mtm5ndixmjcwmde:d83b2f1422c14016176c75d9c359531f0d7a03b43a560cc2497b55c</pre>
+  <pre>https://linkchatter.com/chat/mde0odk2odm3odk0mjexmjcwm</pre>
+
+  <h4>Attaching key to link</h4>
+
+  <p>There is also possibility to share link with key</p>
+  <pre>https://linkchatter.com/chat/{conversation_id}:{key}</pre>
+  <pre>https://linkchatter.com/chat/mde0odk2odm3odk0mjexmjcwm:1814c55ade47aa623aa83a8b5681bf58597a8cfec37f6919b8db6f</pre>
+
+  <p>In that case, user have to input authorisation key</p>
+
+  <h4>Auto setting nickname</h4>
+
+  <p>If you wish to set nickname for users, you can do it by simply adding <i>:{nickname}</i> to end of the link</p>
+
+  <pre>https://linkchatter.com/chat/{conversation_id}:{key}:{nickname}</pre>
+  <pre>https://linkchatter.com/chat/mde0odk2odm3odk0mjexmjcwm:1814c55ade47aa623aa83a8b5681bf58597a8cfec37f6919b8db6f:nickname</pre>
+
 </div>
 
 
