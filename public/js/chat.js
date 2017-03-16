@@ -24,6 +24,13 @@ $(function () {
             key:key
         });
     });
+
+    function welcomeText() {
+        addMessage({
+            type:'message',
+            message:'You can now chat!'
+        })
+    }
     function formatText(timestamp) {
         var time = moment.unix(timestamp/1000);
         var timestampNow = new Date().getDate() / 1000;
@@ -44,10 +51,15 @@ $(function () {
 
 
         var $info = $('<div class="info">');
-        $info.append($('<div class="user">').text(data.user_id));
-        $info.append($('<div class="time">').text(
-            formatText(data.timestamp)
-        ));
+        if (data.user_id != undefined) {
+            $info.append($('<div class="user">').text(data.user_id));
+        }
+
+        if (data.timestamp != undefined) {
+            $info.append($('<div class="time">').text(
+                formatText(data.timestamp)
+            ));
+        }
         $messsage.append($info);
 
         if (data.user_id != undefined) {
@@ -71,6 +83,7 @@ $(function () {
 
             addMessage(row);
         }
+        welcomeText();
     }
 
     socket.on('message', function(data) {
@@ -90,6 +103,11 @@ $(function () {
             setUp(data);
         }else if (data.type == 'history') {
             makeHistory(data.data);
+        }else if (data.type == 'disconnect') {
+            addMessage({
+                type: 'warning',
+                message: 'Someone left the conversation!'
+            });
         }
 
     });

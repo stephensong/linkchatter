@@ -120,6 +120,18 @@ io.sockets.on('connection', function(socket) {
                     });
 
                     sendHistory(socket);
+
+
+                    socket.on('disconnect', function() {
+                        console.log('leave',roomName);
+
+                        io.sockets.in(roomName).emit('message',{
+                            type:'disconnect',
+                            user_id:socket.id
+                        });
+
+                    });
+
                 });
 
             }else{
@@ -137,8 +149,6 @@ io.sockets.on('connection', function(socket) {
 
     });
 });
-
-
 
 
 http.listen(port, function(){
