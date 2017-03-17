@@ -88,6 +88,8 @@ $(function () {
         }
 
         function addMessage(data) {
+            data.type = data.type || 'normal';
+
             var $messsage = $('<li class="'+data.type+'">');
 
             if (data.user_id == myID) {

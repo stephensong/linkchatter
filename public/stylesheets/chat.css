@@ -32,8 +32,8 @@ form button {
 }
 
 #messages li {
-    padding: 1px 9px;
-    margin: 1px 5px;
+    padding: 1px 7px;
+    margin: 1px 1px;
     border-radius: 2px;
     font-size: 1.1em;
     background: #e5ebf5;
@@ -92,6 +92,12 @@ form button {
     padding-left: 3px;
     padding-top: 5px;
 }
+
+#messages li .info{
+    line-height: 14px;
+    margin-left: 36px;
+}
+
 
 #messages li .info .user{
     color: #4a6785;
