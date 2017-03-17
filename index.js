@@ -16,14 +16,6 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-app.use(function(error, req, res, next) {
-    console.error(error);
-    if (ISLOCALHOST()) {
-        res.json(error, 500);
-    } else {
-        res.send('500: Internal Server Error', 500);
-    }
-});
 
 var pg = require('pg');
 
@@ -172,7 +164,7 @@ function sendHistory(socket) {
 
     pool.query('SELECT * FROM history WHERE room LIKE $1 ORDER BY timestamp LIMIT 10;', [getRoomID(socket)], function(err, result) {
         if (err) {
-            console.error(err); console.log("Error " + err);
+            console.error(err);
         } else {
             sendToMe(socket, {
                 type:'history',
@@ -238,6 +230,15 @@ io.sockets.on('connection', function(socket) {
     });
 });
 
+
+app.use(function(error, req, res, next) {
+    if (error){
+        console.log(error);
+        res.send({
+            error:true
+        });
+    }
+});
 
 http.listen(port, function(){
     console.log('listening on *:' + port);

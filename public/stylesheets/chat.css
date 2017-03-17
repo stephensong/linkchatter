@@ -113,11 +113,12 @@ form button {
     top:0;
     width: 100vw;
     height: 100vh;
-    background: #e2e2e2;
+    background: #576ab0;
     z-index: 2000;
     align-items:center;
     justify-content: center;
     text-align: center;
+    color: #fff;
 }
 
 .input-screen .input{

@@ -81,3 +81,11 @@
 body{
   margin: 0;
 }
+
+.btn{
+  border-radius: 3px!important;
+}
+input.input-lg{
+  padding: 2px 10px;
+  border-radius: 2px!important;
+}
