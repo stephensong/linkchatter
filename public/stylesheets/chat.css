@@ -32,17 +32,17 @@ form button {
 }
 
 #messages li {
-    padding: 5px 10px;
-    margin: 3px 2px;
-    border-radius: 1px;
+    padding: 1px 9px;
+    margin: 1px 5px;
+    border-radius: 2px;
     font-size: 1.1em;
-    background: #ebeef3;
+    background: #e5ebf5;
     border-top: solid #fff 1px;
     color: #333;
 }
 
 #messages li.me {
-    background: #dfefff;
+    background: #d3e1f7;
 }
 
 #messages {
@@ -78,6 +78,7 @@ form button {
     border: 1px solid #4b4b4b;
     margin: 3px;
     float: left;
+    margin-right: 8px;
 }
 .icon i{
     color: white;
@@ -113,7 +114,7 @@ form button {
     top:0;
     width: 100vw;
     height: 100vh;
-    background: #576ab0;
+    background: #3841a0;
     z-index: 2000;
     align-items:center;
     justify-content: center;
