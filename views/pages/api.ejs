@@ -18,11 +18,10 @@
   <header>
     <h1>API Documentation</h1>
   </header>
-  <p>For this moment, our API provide only one endpoint.</p>
 
   <h3>Creating new conversation</h3>
   <p>HTTP GET Endpoint</p>
-  <pre>https://linkchatter.com/get-link</pre>
+  <pre>GET https://linkchatter.com/api/v1/get-link</pre>
 
   <p>Example response</p>
   <pre>
@@ -37,13 +36,13 @@
   <p>So that the URL will look like this</p>
   <pre>https://linkchatter.com/chat/mde0odk2odm3odk0mjexmjcwm</pre>
 
+  <p>In that case, user have to input authorisation key on chat web page</p>
+
   <h4>Attaching a key to the link</h4>
 
   <p>There is also possibility to share link with key</p>
   <pre>https://linkchatter.com/chat/{conversation_id}:{key}</pre>
   <pre>https://linkchatter.com/chat/mde0odk2odm3odk0mjexmjcwm:1814c55ade47aa623aa83a8b5681bf58597a8cfec37f6919b8db6f</pre>
-
-  <p>In that case, user have to input authorisation key</p>
 
   <h4>Automatically set nickname</h4>
 
@@ -52,6 +51,30 @@
   <pre>https://linkchatter.com/chat/{conversation_id}:{key}:{nickname}</pre>
   <pre>https://linkchatter.com/chat/mde0odk2odm3odk0mjexmjcwm:1814c55ade47aa623aa83a8b5681bf58597a8cfec37f6919b8db6f:nickname</pre>
 
+  <h3>Posting message via API</h3>
+  <p>HTTP POST Endpoint</p>
+  <pre>POST https://linkchatter.com/api/v1/message</pre>
+  <p>Endpoint accept only json data</p>
+  <pre>
+{
+  "room":"mde0odk3ndm1mdu1mdexmjcwm",
+  "key":"4260c795e9b4e9da5b38b7ab17c6dbc8908b52bc5f5b723c9d553f",
+  "message":"hello chatter from API :)",
+  "nickname":"john doe"
+}</pre>
+<p>Necessary field</p>
+  <ul>
+    <li>{room} - (string) room name gained from /get-link endpoint</li>
+    <li>{key} - (string) authorisation key gained from /get-link endpoint </li>
+    <li>{message} - (string) message to send</li>
+    <li>{nickname} - (string) nickname displayed next to message</li>
+  </ul>
+
+  <p>If message was send, response will look this</p>
+  <pre>
+{
+  "message": "send"
+}</pre>
 </div>
 
 

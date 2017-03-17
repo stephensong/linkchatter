@@ -6,8 +6,24 @@ var port = process.env.PORT || 3000;
 var sha256 = require('js-sha256').sha224;
 var favicon = require('serve-favicon');
 var path = require('path');
+var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
 
 app.use(favicon(path.join(__dirname,'public','favicon.ico')));
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json());
+
+app.use(function(error, req, res, next) {
+    console.error(error);
+    if (ISLOCALHOST()) {
+        res.json(error, 500);
+    } else {
+        res.send('500: Internal Server Error', 500);
+    }
+});
 
 var pg = require('pg');
 
@@ -31,7 +47,7 @@ pool.connect(function(err, _client, done) {
 
 
 
-app.get('/get-link', function(req, res){
+app.get('/api/v1/get-link', function(req, res){
 
     var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 
@@ -49,6 +65,60 @@ app.get('/get-link', function(req, res){
         key:sha256(roomHash+''+keySalt)
     });
 
+});
+
+app.post('/api/v1/message', function (request, response) {
+    var data = request.body;
+
+    var requiredFields = ['key','room','message','nickname'];
+    var fieldsNotInData = [];
+
+    for (var i = 0; i < requiredFields.length; i++) {
+        var field = requiredFields[i];
+        if (!data.hasOwnProperty(field)) fieldsNotInData.push(field);
+    }
+
+    if (fieldsNotInData.length>0) {
+        response.send({
+            'required_fields': fieldsNotInData,
+        });
+        return;
+    }
+
+    var __ret = getRoomKey(data);
+    var key = __ret.key;
+    var roomName = __ret.roomName;
+
+    if (data.key != key) {
+        response.send({
+            'key': 'wrong_key',
+        });
+        return;
+    }
+
+    var message = {
+        type:'message',
+        user_id:'api',
+        nickname:data.nickname,
+        message:data.message,
+        timestamp:(+new Date())
+    };
+
+    var pseudoSocket = {
+        id:message.user_id,
+        rooms:{}
+    };
+
+    pseudoSocket.rooms[roomName] = {id:roomName};
+
+
+    sendToMyRooms(pseudoSocket, message);
+
+    insetToHistory(pseudoSocket, message);
+
+    response.send({
+        'message':'send'
+    });    // echo the result back
 });
 
 app.get('/', function(request, response) {
@@ -91,7 +161,7 @@ function insetToHistory(socket, data) {
 
     pool.query('INSERT INTO history (user_id, nickname, room, text, timestamp) VALUES ($1,$2,$3,$4,$5);', [socket.id,data.nickname || '', getRoomID(socket), data.message, (+new Date())], function(err, result) {
         if (err)
-        { console.error(err); response.send("Error " + err); }
+        { console.error(err); }
     });
 }
 
@@ -110,6 +180,13 @@ function sendHistory(socket) {
     });
 }
 
+var getRoomKey = function (data) {
+    var roomID = (data.room);
+    var key = sha256(roomID + '' + keySalt);
+    var roomName = 'conversation-' + roomID;
+    return {key: key, roomName: roomName};
+};
+
 io.sockets.on('connection', function(socket) {
 
     sendToMe(socket,{type:'hello',id:socket.id});
@@ -117,9 +194,9 @@ io.sockets.on('connection', function(socket) {
     socket.on('join_to_room', function(data) {
 
         try{
-            var roomID = (data.room);
-            var key = sha256(roomID+''+keySalt);
-            var roomName = 'conversation-'+roomID;
+            var __ret = getRoomKey(data);
+            var key = __ret.key;
+            var roomName = __ret.roomName;
 
             if (data.key == key) {
                 socket.join(roomName, function () {

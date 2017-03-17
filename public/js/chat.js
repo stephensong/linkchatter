@@ -112,11 +112,16 @@ $(function () {
             }
             $messsage.append($info);
 
-            if (data.user_id != undefined) {
-                var icon = $('<div class="icon">').append('<i class="fa fa-user">');
+            if (data.user_id != undefined && data.user_id != 'api') {
+                var icon = $('<div class="icon">').append('<i class="fa fa-fw fa-user">');
                 icon.css('background', colorHash.hex(data.user_id));
                 $messsage.append(icon);
+            }else if (data.user_id != undefined && data.user_id == 'api') {
+                icon = $('<div class="icon">').append('<i class="fa fa-fw fa-envelope">');
+                icon.css('background', '#da5500');
+                $messsage.append(icon);
             }
+
             var message = $('<div class="message">').text(data.message);
             $messsage.append(message);
 

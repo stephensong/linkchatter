@@ -81,10 +81,10 @@ form button {
 }
 .icon i{
     color: white;
-    font-size: 22px;
+    font-size: 19px;
     position: relative;
-    left: 6px;
-    top: 2px;
+    left: 2px;
+    top: 4px;
 }
 .message{
     min-height: 40px;
