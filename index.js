@@ -70,20 +70,22 @@ app.get('/api/v1/get-link', function(req, res){
 app.post('/api/v1/message', function (request, response) {
     var data = request.body;
 
-    var requiredFields = ['key','room','message','nickname'];
+    var requiredFields = ['key','conversation_id','message','nickname'];
     var fieldsNotInData = [];
 
     for (var i = 0; i < requiredFields.length; i++) {
         var field = requiredFields[i];
-        if (!data.hasOwnProperty(field)) fieldsNotInData.push(field);
+        if (!data.hasOwnProperty(field) || typeof data[field] !== 'string') fieldsNotInData.push(field);
     }
 
     if (fieldsNotInData.length>0) {
         response.send({
-            'required_fields': fieldsNotInData,
+            'required_string_fields': fieldsNotInData,
         });
         return;
     }
+
+    data.room = data.conversation_id;
 
     var __ret = getRoomKey(data);
     var key = __ret.key;
