@@ -194,20 +194,23 @@ io.sockets.on('connection', function(socket) {
 
             if (data.key == key) {
                 socket.join(roomName, function () {
+                    socket.nickname = data.nickname;
+
                     sendToMyRooms(socket, {
                         type:'new_user',
                         user_id:socket.id,
-                        count:io.sockets.adapter.rooms[roomName].length
+                        count:io.sockets.adapter.rooms[roomName].length,
+                        nickname:socket.nickname
                     });
 
                     sendHistory(socket);
-
 
                     socket.on('disconnect', function() {
 
                         io.sockets.in(roomName).emit('message',{
                             type:'disconnect',
-                            user_id:socket.id
+                            user_id:socket.id,
+                            nickname:socket.nickname
                         });
 
                     });

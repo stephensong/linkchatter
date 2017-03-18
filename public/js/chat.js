@@ -66,7 +66,8 @@ $(function () {
             // Connected, let's sign-up for to receive messages for this room
             socket.emit('join_to_room', {
                 room:room,
-                key:key
+                key:key,
+                nickname:nickname
             });
         });
 
@@ -148,7 +149,7 @@ $(function () {
             if (data.type == 'message') {
                 addMessage(data);
             }else if (data.type == 'new_user' && myID != undefined && data.user_id != myID) {
-                addMessage({type: 'new_user', 'message': 'New user joined to the conversation'});
+                addMessage({type: 'new_user', 'message': data.nickname+' joined to the conversation'});
             }else if (data.type == 'wrong_key') {
                 addMessage({
                     type: 'error',
@@ -161,7 +162,7 @@ $(function () {
             }else if (data.type == 'disconnect') {
                 addMessage({
                     type: 'warning',
-                    message: 'Someone left the conversation!'
+                    message: data.nickname+' left the conversation!'
                 });
             }
 
