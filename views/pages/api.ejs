@@ -19,7 +19,7 @@
     <h1>API Documentation</h1>
   </header>
 
-  <h3>Creating new conversation</h3>
+  <h3 id="create-conversation"><a href="#create-conversation">Creating new conversation</a></h3>
   <p>HTTP GET Endpoint</p>
   <pre>GET https://linkchatter.com/api/v1/get-link</pre>
 
@@ -51,7 +51,8 @@
   <pre>https://linkchatter.com/chat/{conversation_id}:{key}:{nickname}</pre>
   <pre>https://linkchatter.com/chat/mde0odk2odm3odk0mjexmjcwm:1814c55ade47aa623aa83a8b5681bf58597a8cfec37f6919b8db6f:nickname</pre>
 
-  <h3>Posting message via API</h3>
+  <h3 id="posting-message"><a href="#posting-message">Posting message via API</a></h3>
+
   <p>HTTP POST Endpoint</p>
   <pre>POST https://linkchatter.com/api/v1/message</pre>
   <p>Endpoint accept only json data</p>
@@ -77,7 +78,7 @@
 }</pre>
 </div>
 
-
+  <% include ../partials/footer.ejs %>
 </body>
-<% include ../partials/tracking.ejs %>
+
 </html>
