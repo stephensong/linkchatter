@@ -34,15 +34,16 @@ form button {
 #messages li {
     padding: 5px 7px;
     margin: 1px 2px;
-    border-radius: 2px;
+    border-radius: 3px;
     font-size: 1.1em;
-    background: #e5ebf5;
+    background: #efeff5;
     border-bottom: solid #dadada 1px;
     color: #333;
 }
 
 #messages li.me {
-    background: #d3e1f7;
+    background: #d2dff1;
+    border-bottom: solid #b8cad8 1px;
 }
 
 #messages {
@@ -76,7 +77,7 @@ form button {
     width: 30px;
     height: 30px;
     border-radius: 15px;
-    border: 1px solid #4b4b4b;
+    border: 1px solid #446794;
     margin: 3px;
     float: left;
     margin-right: 8px;
