@@ -74,7 +74,7 @@ $(function () {
         function welcomeText() {
             addMessage({
                 type:'message',
-                message:'You can now chat!'
+                message:'You can now typing messages!'
             })
         }
         function formatText(timestamp) {
@@ -149,7 +149,7 @@ $(function () {
             if (data.type == 'message') {
                 addMessage(data);
             }else if (data.type == 'new_user' && myID != undefined && data.user_id != myID) {
-                addMessage({type: 'new_user', 'message': data.nickname+' joined to the conversation'});
+                addMessage({type: 'new_user', 'message': data.nickname+' joined to the conversation!'});
             }else if (data.type == 'wrong_key') {
                 addMessage({
                     type: 'error',
