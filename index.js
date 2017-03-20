@@ -162,7 +162,7 @@ function insetToHistory(socket, data) {
 function sendHistory(socket) {
     if (!registerHistory) return;
 
-    pool.query('SELECT * FROM history WHERE room LIKE $1 ORDER BY timestamp LIMIT 10;', [getRoomID(socket)], function(err, result) {
+    pool.query('SELECT * FROM history WHERE room LIKE $1 ORDER BY timestamp DESC LIMIT 10;', [getRoomID(socket)], function(err, result) {
         if (err) {
             console.error(err);
         } else {

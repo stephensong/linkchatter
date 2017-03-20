@@ -88,7 +88,7 @@ $(function () {
             }
         }
 
-        function addMessage(data) {
+        function addMessage(data, type) {
             data.type = data.type || 'normal';
 
             var $messsage = $('<li class="'+data.type+'">');
@@ -128,7 +128,12 @@ $(function () {
             var message = $('<div class="message">').text(data.message);
             $messsage.append(message);
 
-            $('#messages').append($messsage);
+            if (type == 'prepend') {
+                $('#messages').prepend($messsage);
+            }else{
+                $('#messages').append($messsage);
+            }
+
             window.scrollTo(0, document.body.scrollHeight);
         }
 
@@ -137,9 +142,10 @@ $(function () {
             for (var i = 0; i < rows.length; i++) {
                 var row = rows[i];
 
+                console.log(row);
                 row.message = row.text;
 
-                addMessage(row);
+                addMessage(row, 'prepend');
             }
             welcomeText();
         }
