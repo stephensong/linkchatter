@@ -123,7 +123,7 @@ form button {
     width: 100vw;
     height: 100vh;
     background: #454c98;
-    z-index: 2000;
+    z-index: 500;
     align-items:center;
     justify-content: center;
     text-align: center;
