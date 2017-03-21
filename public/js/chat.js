@@ -19,7 +19,7 @@ $(function () {
 
     var $history_button = $('#history_button');
 
-    var registerHistory = false;
+    var registerHistory = true;
 
     if (window.localStorage.getItem('register_history') == 'true'){
         registerHistory =true;
