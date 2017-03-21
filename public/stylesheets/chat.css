@@ -14,7 +14,6 @@ form {
 form input {
     border-top: solid #ffffff 1px;
     padding: 2px;
-    width: 90%;
     margin-right: .5%;
 }
 
@@ -46,6 +45,12 @@ form button {
     border-bottom: solid #b8cad8 1px;
 }
 
+#messages li.no_history {
+    background: #444446;
+    color: #d2d2d2;
+    border-bottom: solid #000000 1px;
+}
+
 #messages {
     margin-bottom: 40px
 }
@@ -55,7 +60,7 @@ form button {
 }
 
 #messages li.warning {
-    background: #e9e5ed
+    background: #f1a966;
 }
 
 #messages li.error {
@@ -103,6 +108,23 @@ form button {
 
 #messages li .info .user{
     color: #4a6785;
+    font-size: 0.67em;
+    padding-left: 0.5em;
+    display: inline-block;
+}
+
+
+#messages li.no_history .info .user{
+    color: #cecece;
+}
+
+#messages li.no_history .info .time{
+    color: #819fbd;
+}
+
+
+#messages li .info .no-history-info{
+    color: #9c9c9c;
     font-size: 0.67em;
     padding-left: 0.5em;
     display: inline-block;

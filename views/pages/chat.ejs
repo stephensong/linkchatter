@@ -13,8 +13,12 @@
   <% include ../partials/nav.ejs %>
 <div class="container-fluid chat">
   <ul id="messages"></ul>
+
   <form action="">
     <div class="input-group">
+      <span class="input-group-btn">
+        <input class="btn btn-default" type="button" value="With history" id="history_button">
+      </span>
       <input type="text" class="form-control" placeholder="Enter message" autofocus id="m" autocomplete="off" disabled="disabled">
       <span class="input-group-btn">
         <input class="btn btn-default" type="submit" value="Send" id="m_send" disabled="disabled">

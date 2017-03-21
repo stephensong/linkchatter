@@ -7,6 +7,7 @@ $(function () {
 
     var roomMath = window.location.pathname.match(roomIdRegex);
 
+
     var room = roomMath[1];
     var key = roomMath[3];
     var nickname = decodeURIComponent(roomMath[5]);
@@ -15,6 +16,25 @@ $(function () {
     var myID = undefined;
 
     var $input_screen = $('#input_screen');
+
+    var $history_button = $('#history_button');
+
+    var registerHistory = false;
+
+    if (window.localStorage.getItem('register_history') == 'true'){
+        registerHistory =true;
+    }
+
+    function registerOptions(){
+        if (registerHistory){
+            $history_button.val('With history').removeClass('btn-danger').addClass('btn-default');
+        }else{
+            $history_button.val('No history').removeClass('btn-default').addClass('btn-danger');
+        }
+
+        window.localStorage.setItem('register_history', registerHistory);
+    }
+    registerOptions();
 
     function showInputScreen() {
         var $key = $('#input_key_field');
@@ -40,6 +60,8 @@ $(function () {
         e.preventDefault();
         submitInputScreen();
     });
+
+
 
     function submitInputScreen() {
         var $key = $('#input_key').val();
@@ -88,6 +110,25 @@ $(function () {
             }
         }
 
+        $history_button.click(function (e) {
+            e.preventDefault();
+            registerHistory = !registerHistory;
+
+            registerOptions();
+
+            if (registerHistory){
+                addMessage({
+                    type:'message',
+                    message:'Your messages will be stored in database for history propose.'
+                })
+            }else{
+                addMessage({
+                    type:'warning',
+                    message:'Your messages will not be stored, thus only online user will see it.'
+                })
+            }
+        });
+
         function addMessage(data, type) {
             data.type = data.type || 'normal';
 
@@ -95,6 +136,9 @@ $(function () {
 
             if (data.user_id == myID) {
                 $messsage.addClass('me');
+            }
+            if (data.register_history == false) {
+                $messsage.addClass('no_history');
             }
 
             var messageNickname = data.nickname;
@@ -112,6 +156,10 @@ $(function () {
                 $info.append($('<div class="time">').text(
                     formatText(data.timestamp)
                 ));
+            }
+
+            if (data.register_history == false) {
+                $info.append($('<div class="no-history-info">').text('History disabled'));
             }
             $messsage.append($info);
 
@@ -146,6 +194,16 @@ $(function () {
                 row.message = row.text;
 
                 addMessage(row, 'prepend');
+            }
+
+            var loadedMessages = rows.length;
+            if (loadedMessages>10) loadedMessages = 10;
+
+            if (rows.length>0){
+                addMessage({
+                    type:'message',
+                    message:'Loaded '+loadedMessages+' latest messages. All messages will be deleted from our database after 2 days.'
+                })
             }
             welcomeText();
         }
@@ -193,7 +251,8 @@ $(function () {
             socket.emit('message', {
                 type:'message',
                 message:$val.val(),
-                nickname:nickname
+                nickname:nickname,
+                register_history:registerHistory
             });
             $val.val('');
             return false;

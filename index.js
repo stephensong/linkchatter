@@ -228,6 +228,8 @@ io.sockets.on('connection', function(socket) {
         data.timestamp = (+new Date());
         sendToMyRooms(socket, data);
 
+        if (data.hasOwnProperty('register_history') && data.register_history == false) return;
+
         insetToHistory(socket, data);
 
     });
