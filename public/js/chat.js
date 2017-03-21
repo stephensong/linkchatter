@@ -24,6 +24,9 @@ $(function () {
     if (window.localStorage.getItem('register_history') == 'true'){
         registerHistory =true;
     }
+    if (window.localStorage.getItem('register_history') == 'false'){
+        registerHistory =false;
+    }
 
     function registerOptions(){
         if (registerHistory){
