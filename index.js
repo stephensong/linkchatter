@@ -196,21 +196,32 @@ io.sockets.on('connection', function(socket) {
                 socket.join(roomName, function () {
                     socket.nickname = data.nickname;
 
-                    sendToMyRooms(socket, {
-                        type:'new_user',
-                        user_id:socket.id,
-                        count:io.sockets.adapter.rooms[roomName].length,
-                        nickname:socket.nickname
-                    });
+                    if (io.sockets.adapter.rooms[roomName] != undefined) {
 
-                    sendHistory(socket);
+                        sendToMyRooms(socket, {
+                            type: 'new_user',
+                            user_id: socket.id,
+                            count: io.sockets.adapter.rooms[roomName].length,
+                            nickname: socket.nickname
+                        });
+
+                        sendHistory(socket);
+
+                        sendToMe(socket, {
+                            type: 'room_count',
+                            count: io.sockets.adapter.rooms[roomName].length,
+                        });
+                    }
 
                     socket.on('disconnect', function() {
+
+                        if (io.sockets.adapter.rooms[roomName] == undefined) return;
 
                         io.sockets.in(roomName).emit('message',{
                             type:'disconnect',
                             user_id:socket.id,
-                            nickname:socket.nickname
+                            nickname:socket.nickname,
+                            count:io.sockets.adapter.rooms[roomName].length,
                         });
 
                     });

@@ -30,9 +30,9 @@ $(function () {
 
     function registerOptions(){
         if (registerHistory){
-            $history_button.val('With history').removeClass('btn-danger').addClass('btn-default');
+            $history_button.removeClass('btn-danger').addClass('btn-default');
         }else{
-            $history_button.val('No history').removeClass('btn-default').addClass('btn-danger');
+            $history_button.removeClass('btn-default').addClass('btn-danger');
         }
 
         window.localStorage.setItem('register_history', registerHistory);
@@ -188,6 +188,11 @@ $(function () {
             window.scrollTo(0, document.body.scrollHeight);
         }
 
+        var $online = $('.online');
+        function setOnline(online) {
+            $online.text(online+' online');
+        }
+
         function makeHistory(rows) {
             $('#messages').html('');
             for (var i = 0; i < rows.length; i++) {
@@ -216,7 +221,8 @@ $(function () {
             if (data.type == 'message') {
                 addMessage(data);
             }else if (data.type == 'new_user' && myID != undefined && data.user_id != myID) {
-                addMessage({type: 'new_user', 'message': data.nickname+' joined to the conversation!'});
+                addMessage({type: 'new_user', 'message': data.nickname+' joined to the conversation! '+data.count+' online'});
+                setOnline(data.count);
             }else if (data.type == 'wrong_key') {
                 addMessage({
                     type: 'error',
@@ -228,9 +234,13 @@ $(function () {
                 makeHistory(data.data);
             }else if (data.type == 'disconnect') {
                 addMessage({
-                    type: 'warning',
-                    message: data.nickname+' left the conversation!'
+                    type: 'message',
+                    message: data.nickname+' left the conversation! '+data.count+' online'
                 });
+
+                setOnline(data.count);
+            }else if (data.type == 'room_count') {
+                setOnline(data.count);
             }
 
         });
