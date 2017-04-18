@@ -221,7 +221,7 @@ $(function () {
             if (data.type == 'message') {
                 addMessage(data);
             }else if (data.type == 'new_user' && myID != undefined && data.user_id != myID) {
-                addMessage({type: 'new_user', 'message': data.nickname+' joined to the conversation! '+data.count+' online'});
+                addMessage({type: 'new_user', 'message': data.nickname+' joined to the conversation! '});
                 setOnline(data.count);
             }else if (data.type == 'wrong_key') {
                 addMessage({
@@ -235,7 +235,7 @@ $(function () {
             }else if (data.type == 'disconnect') {
                 addMessage({
                     type: 'message',
-                    message: data.nickname+' left the conversation! '+data.count+' online'
+                    message: data.nickname+' left the conversation! '
                 });
 
                 setOnline(data.count);
