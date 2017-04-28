@@ -1,9 +1,9 @@
-var port = process.env.PORT || 3000;
 var sha256 = require('js-sha256').sha224;
 var favicon = require('serve-favicon');
 var path = require('path');
 var bodyParser = require('body-parser');
 var socket = require('./socket');
+var config = require('./config');
 
 var express = require('express');
 var app = express();
@@ -21,19 +21,6 @@ app.use(express.static(__dirname+'/../' + '/public'));
 app.set('views', __dirname+'/../' + '/views');
 app.set('view engine', 'ejs');
 
-var keySalt = process.env.APP_KEY || 'testowy';
-var registerHistory = process.env.REGISTER_HISTORY || 'false';
-
-if (registerHistory == 'true') registerHistory = true;
-if (registerHistory == 'false') registerHistory = false;
-
-var config = {
-    keySalt:keySalt,
-    registerHistory:registerHistory,
-    port:port,
-    databaseUrl:process.env.DATABASE_URL
-};
-
 
 var run = function () {
     socket.registerBehavior(io);
@@ -47,8 +34,8 @@ var run = function () {
         }
     });
 
-    http.listen(port, function(){
-        console.log('listening on *:' + port);
+    http.listen(config.port, function(){
+        console.log('listening on *:' + config.port);
     });
 };
 

@@ -1,4 +1,5 @@
 var pg = require('pg');
+var config = require('./config');
 
 // views is directory for all template files
 
@@ -6,6 +7,7 @@ var pool = undefined;
 var client= undefined;
 
 var connect = function (config, callback) {
+    console.log(config.databaseUrl);
     pool = new pg.Client(config.databaseUrl);
 
     pool.connect(function(err, _client, done) {
@@ -18,7 +20,7 @@ var connect = function (config, callback) {
 };
 var query = function (sql, params, queryCallback) {
     if (pool == undefined || client == undefined){
-        connect(function () {
+        connect(config, function () {
             pool.query(sql, params, queryCallback);
         })
     }else{
