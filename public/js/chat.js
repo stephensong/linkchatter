@@ -232,6 +232,8 @@ $(function () {
                 setUp(data);
             }else if (data.type == 'history') {
                 makeHistory(data.data);
+            }else if (data.type == 'ready') {
+                welcomeText();
             }else if (data.type == 'disconnect') {
                 addMessage({
                     type: 'message',
