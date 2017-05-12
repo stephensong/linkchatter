@@ -7,7 +7,7 @@ var pool = undefined;
 var client= undefined;
 
 var connect = function (config, callback) {
-    console.log(config.databaseUrl);
+
     pool = new pg.Client(config.databaseUrl);
 
     pool.connect(function(err, _client, done) {
